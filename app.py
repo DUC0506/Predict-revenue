@@ -123,5 +123,8 @@ def predict_item(item_id):
     sample_data = create_sample_data(start_date, end_date, store_id, item_id)
     predictions = loaded_model.predict(sample_data)
     return jsonify({'predictions': predictions.tolist()})
+@app.route('/greeting', methods=['GET'])
+def greeting():
+    return jsonify(message="Hello, guys!")
 if __name__ == '__main__':
     app.run(debug=True)
