@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "installCommand": "pip install flask",
   "builds":[
     {"src":"app.py" , "use": "@vercel/python"}
   ],
