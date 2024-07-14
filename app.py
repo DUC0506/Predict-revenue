@@ -12,9 +12,9 @@ model = joblib.load(MODEL_PATH)
 
 MODEL_FILE='./lgb_model.pkl'
 loaded_model = joblib.load(MODEL_FILE)
-@app.route('/predict', methods=['POST'])
+@app.route('/predict/<int:store_id>', methods=['POST'])
 @cross_origin()
-def predict_sales():
+def predict_sales(store_id):
     json_data = request.json
     start_date = json_data['start_date']
     end_date = json_data['end_date']
@@ -24,7 +24,7 @@ def predict_sales():
     # input_data = pd.DataFrame.from_dict(json_data, orient='index').T
 
     input_data = pd.DataFrame(index=date_range)
-    input_data['Store'] = 1
+    input_data['Store'] = store_id
     input_data['Dept'] = 1
     input_data['IsHoliday'] = 0
     input_data['Type'] = 2
@@ -123,8 +123,5 @@ def predict_item(item_id):
     sample_data = create_sample_data(start_date, end_date, store_id, item_id)
     predictions = loaded_model.predict(sample_data)
     return jsonify({'predictions': predictions.tolist()})
-@app.route('/greeting', methods=['GET'])
-def greeting():
-    return jsonify(message="Hello, guys!")
 if __name__ == '__main__':
     app.run(debug=True)
