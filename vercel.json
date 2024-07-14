@@ -8,6 +8,14 @@
   ],
   "routes": [
     {
+      "src": "/predict-item/<int:item_id>",
+      "dest": "app.py"
+    },
+    {
+      "src": "/predict/<int:store_id>",
+      "dest": "app.py"
+    },
+    {
       "src": "/(.*)",
       "dest": "app.py"
     }
