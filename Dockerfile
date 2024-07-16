@@ -1,5 +1,5 @@
 
-FROM python:3.10.10-slim
+FROM python:3.10.10
 
 
 WORKDIR /app
@@ -14,7 +14,7 @@ EXPOSE 5000
 
 
 ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_RUN_HOST=127.0.0.1
 
 
-CMD ["flask", "run"]
+CMD ["python", "app.py"]
