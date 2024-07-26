@@ -125,4 +125,4 @@ def predict_item(item_id):
     predictions = loaded_model.predict(sample_data)
     return jsonify({'predictions': predictions.tolist()})
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")
